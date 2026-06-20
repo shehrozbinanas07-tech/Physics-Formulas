@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Level Physics 5054 — Formula Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #0e1117;
+    --surface: #161b24;
+    --card:    #1c2333;
+    --border:  #2a3348;
+    --a1: #3ddcac;  /* teal   – motion      */
+    --a2: #f5a623;  /* amber  – thermal     */
+    --a3: #5b9cf6;  /* blue   – waves       */
+    --a4: #e8628a;  /* pink   – electricity */
+    --a5: #b06ef5;  /* purple – nuclear     */
+    --a6: #f56e6e;  /* red    – space       */
+    --text:  #dde3f0;
+    --muted: #6b7899;
+    --body:  'Inter', sans-serif;
+    --code:  'JetBrains Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 2rem 1rem 5rem;
+  }
+
+  /* ── Hero ─────────────────────────────── */
+  .hero {
+    text-align: center;
+    padding: 2.5rem 1rem 2rem;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 55% at 50% 0%, rgba(61,220,172,.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .tag {
+    display: inline-block;
+    font-family: var(--code);
+    font-size: 0.68rem;
+    letter-spacing: .2em;
+    color: var(--a1);
+    border: 1px solid var(--a1);
+    padding: .22rem .75rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+    margin-bottom: .9rem;
+  }
+  h1 {
+    font-size: clamp(1.9rem, 5vw, 2.9rem);
+    font-weight: 800;
+    letter-spacing: -.03em;
+    line-height: 1.1;
+    margin-bottom: .4rem;
+  }
+  h1 em { font-style: normal; color: var(--a1); }
+  .subtitle {
+    font-family: var(--code);
+    font-size: .72rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  /* ── Nav ──────────────────────────────── */
+  .nav {
+    display: flex; flex-wrap: wrap;
+    gap: .4rem; justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+  .nav-btn {
+    font-family: var(--body);
+    font-size: .78rem;
+    font-weight: 600;
+    padding: .45rem 1.1rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .18s;
+  }
+  .nav-btn:hover { color: var(--text); background: var(--card); }
+  .nav-btn.active {
+    color: var(--accent) !important;
+    border-color: var(--accent) !important;
+    background: var(--card);
+  }
+
+  /* ── Sections ─────────────────────────── */
+  .section { display: none; max-width: 960px; margin: 0 auto; animation: up .25s ease; }
+  .section.visible { display: block; }
+  @keyframes up { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+
+  .sec-header {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.8rem;
+    padding-bottom: .75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .sec-num {
+    font-family: var(--code); font-size: .62rem;
+    color: var(--muted); border: 1px solid var(--border);
+    padding: .12rem .45rem; border-radius: 3px; flex-shrink: 0;
+  }
+  .sec-title { font-size: 1.3rem; font-weight: 800; letter-spacing: -.02em; }
+
+  /* ── Topic ────────────────────────────── */
+  .topic { margin-bottom: 2rem; }
+  .topic-title {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-left: 2px solid var(--accent);
+    padding-left: .6rem;
+    margin-bottom: .85rem;
+  }
+
+  /* ── Grid & Card ──────────────────────── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+    gap: .75rem;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.1rem .95rem;
+    display: flex; flex-direction: column; gap: .6rem;
+    transition: border-color .18s, box-shadow .18s;
+  }
+  .card:hover { border-color: var(--accent); box-shadow: 0 0 16px rgba(0,0,0,.4); }
+
+  .card-label {
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* ── Formula area ─────────────────────── */
+  .f {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .4rem;
+    font-family: var(--code);
+    font-size: 1.08rem;
+    font-weight: 600;
+    color: var(--text);
+    min-height: 2.8rem;
+    padding: .2rem 0;
+  }
+
+  /* highlighted LHS like "v =" */
+  .lhs { color: var(--accent); white-space: nowrap; }
+
+  /* plain non-fraction text */
+  .t { white-space: nowrap; }
+
+  /* muted operator: = + − × */
+  .op { color: var(--muted); }
+
+  /* ── Stacked fraction ─────────────────── */
+  .fr {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    font-size: .95rem;
+  }
+  .fr .n {                        /* numerator   */
+    padding: 0 .35rem .18rem;
+    white-space: nowrap;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .fr .b {                        /* bar         */
+    width: 100%; min-width: 1.4rem;
+    height: 2px;
+    background: var(--text);
+    border-radius: 1px;
+  }
+  .fr .d {                        /* denominator */
+    padding: .18rem .35rem 0;
+    white-space: nowrap;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  /* ── Variable legend ──────────────────── */
+  .vars {
+    font-size: .72rem;
+    color: var(--muted);
+    line-height: 1.8;
+    border-top: 1px solid var(--border);
+    padding-top: .5rem;
+  }
+  .vars b { color: var(--accent); font-weight: 600; }
+
+  /* ── Unit badge ───────────────────────── */
+  .unit {
+    display: inline-block;
+    font-family: var(--code);
+    font-size: .6rem;
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: .05rem .45rem;
+    color: var(--muted);
+    align-self: flex-start;
+  }
+
+  /* ── Note box ─────────────────────────── */
+  .note {
+    background: rgba(245,166,35,.06);
+    border-left: 3px solid var(--a2);
+    padding: .75rem 1rem;
+    border-radius: 0 6px 6px 0;
+    font-size: .76rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+  }
+  .note strong { color: var(--a2); }
+
+  /* ── SUVAT helper box ─────────────────── */
+  .suvat-box {
+    background: rgba(61,220,172,.05);
+    border: 1px solid rgba(61,220,172,.2);
+    border-radius: 8px;
+    padding: .9rem 1.1rem;
+    margin-bottom: 1.2rem;
+    font-size: .78rem;
+    line-height: 1.85;
+    color: var(--muted);
+  }
+  .suvat-box strong { color: var(--a1); font-size: .82rem; display: block; margin-bottom: .3rem; }
+  .suvat-box b { color: var(--a1); }
+
+  /* ── Accent per section ───────────────── */
+  #s1 { --accent: var(--a1); }
+  #s2 { --accent: var(--a2); }
+  #s3 { --accent: var(--a3); }
+  #s4 { --accent: var(--a4); }
+  #s5 { --accent: var(--a5); }
+  #s6 { --accent: var(--a6); }
+  .nav-btn[data-sec="s1"] { --accent: var(--a1); }
+  .nav-btn[data-sec="s2"] { --accent: var(--a2); }
+  .nav-btn[data-sec="s3"] { --accent: var(--a3); }
+  .nav-btn[data-sec="s4"] { --accent: var(--a4); }
+  .nav-btn[data-sec="s5"] { --accent: var(--a5); }
+  .nav-btn[data-sec="s6"] { --accent: var(--a6); }
+
+  @media (max-width: 480px) {
+    .grid { grid-template-columns: 1fr; }
+    .f { font-size: .95rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="tag">Cambridge O Level · 5054</div>
+  <h1>Physics <em>Formula</em> Sheet</h1>
+  <p class="subtitle">All equations · stacked fractions · variable guide · tap a section to navigate</p>
+</div>
+
+<nav class="nav">
+  <button class="nav-btn active" data-sec="s1">1 · Motion &amp; Energy</button>
+  <button class="nav-btn"        data-sec="s2">2 · Thermal Physics</button>
+  <button class="nav-btn"        data-sec="s3">3 · Waves</button>
+  <button class="nav-btn"        data-sec="s4">4 · Electricity &amp; Magnetism</button>
+  <button class="nav-btn"        data-sec="s5">5 · Nuclear Physics</button>
+  <button class="nav-btn"        data-sec="s6">6 · Space Physics</button>
+</nav>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 1 — Motion, Forces & Energy
+     ══════════════════════════════════════════ -->
+<section class="section visible" id="s1">
+  <div class="sec-header">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">Motion, Forces &amp; Energy</h2>
+  </div>
+
+  <!-- SUVAT explainer -->
+  <div class="suvat-box">
+    <strong>What is SUVAT?</strong>
+    SUVAT is a memory aid for the five variables in uniform-acceleration motion:<br>
+    <b>S</b> = displacement &nbsp;·&nbsp; <b>U</b> = initial velocity &nbsp;·&nbsp; <b>V</b> = final velocity &nbsp;·&nbsp; <b>A</b> = acceleration &nbsp;·&nbsp; <b>T</b> = time<br>
+    Each equation below uses four of these five. Pick the one that contains the three variables you already know plus the one you want to find.
+  </div>
+
+  <!-- 1.1 Motion -->
+  <div class="topic">
+    <div class="topic-title">1.1 · Motion</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Speed / Velocity</div>
+        <div class="f">
+          <span class="lhs">v =</span>
+          <span class="fr"><span class="n">s</span><span class="b"></span><span class="d">t</span></span>
+        </div>
+        <div class="vars">
+          <b>v</b> = velocity (m/s)<br>
+          <b>s</b> = displacement (m)<br>
+          <b>t</b> = time (s)
+        </div>
+        <span class="unit">m/s</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Acceleration</div>
+        <div class="f">
+          <span class="lhs">a =</span>
+          <span class="fr"><span class="n">v − u</span><span class="b"></span><span class="d">t</span></span>
+        </div>
+        <div class="vars">
+          <b>a</b> = acceleration (m/s²)<br>
+          <b>v</b> = final velocity (m/s)<br>
+          <b>u</b> = initial velocity (m/s)<br>
+          <b>t</b> = time (s)
+        </div>
+        <span class="unit">m/s²</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Equation of Motion ① — find v &nbsp;<span style="font-weight:400;color:var(--muted);font-size:.72rem">(missing s)</span></div>
+        <div class="f"><span class="t">v = u + at</span></div>
+        <div class="vars">
+          Use when displacement is not needed<br>
+          <b>u</b> = initial vel. · <b>a</b> = accel. · <b>t</b> = time
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Equation of Motion ② — find s &nbsp;<span style="font-weight:400;color:var(--muted);font-size:.72rem">(missing v)</span></div>
+        <div class="f"><span class="t">s = ut + ½at²</span></div>
+        <div class="vars">
+          Use when final velocity is not needed<br>
+          <b>s</b> = displacement · <b>u</b> = initial vel.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Equation of Motion ③ — no t needed &nbsp;<span style="font-weight:400;color:var(--muted);font-size:.72rem">(missing t)</span></div>
+        <div class="f"><span class="t">v² = u² + 2as</span></div>
+        <div class="vars">
+          Use when time is not known or needed<br>
+          Links velocity directly to displacement
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 1.2 Mass, Weight, Density -->
+  <div class="topic">
+    <div class="topic-title">1.2 · Mass, Weight &amp; Density</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Weight</div>
+        <div class="f"><span class="t">W = mg</span></div>
+        <div class="vars">
+          <b>W</b> = weight (N)<br>
+          <b>m</b> = mass (kg)<br>
+          <b>g</b> = gravitational field strength = 10 N/kg on Earth
+        </div>
+        <span class="unit">N</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Density</div>
+        <div class="f">
+          <span class="lhs">ρ =</span>
+          <span class="fr"><span class="n">m</span><span class="b"></span><span class="d">V</span></span>
+        </div>
+        <div class="vars">
+          <b>ρ</b> (rho) = density (kg/m³)<br>
+          <b>m</b> = mass (kg)<br>
+          <b>V</b> = volume (m³)
+        </div>
+        <span class="unit">kg/m³</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Gravitational Field Strength</div>
+        <div class="f">
+          <span class="lhs">g =</span>
+          <span class="fr"><span class="n">W</span><span class="b"></span><span class="d">m</span></span>
+        </div>
+        <div class="vars">
+          <b>g</b> = 10 N/kg on Earth · varies on other planets<br>
+          <b>W</b> = weight (N) · <b>m</b> = mass (kg)
+        </div>
+        <span class="unit">N/kg</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 1.3 Forces -->
+  <div class="topic">
+    <div class="topic-title">1.3 · Forces &amp; Momentum</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Newton's 2nd Law</div>
+        <div class="f"><span class="t">F = ma</span></div>
+        <div class="vars">
+          <b>F</b> = resultant force (N)<br>
+          <b>m</b> = mass (kg)<br>
+          <b>a</b> = acceleration (m/s²)
+        </div>
+        <span class="unit">N</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Momentum</div>
+        <div class="f"><span class="t">p = mv</span></div>
+        <div class="vars">
+          <b>p</b> = momentum (kg·m/s)<br>
+          <b>m</b> = mass (kg)<br>
+          <b>v</b> = velocity (m/s)
+        </div>
+        <span class="unit">kg·m/s</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Impulse = Change in Momentum</div>
+        <div class="f"><span class="t">Ft = mv − mu</span></div>
+        <div class="vars">
+          <b>F</b> = force (N) · <b>t</b> = time (s)<br>
+          <b>mv</b> = final momentum<br>
+          <b>mu</b> = initial momentum
+        </div>
+        <span class="unit">N·s</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Moment of a Force (Turning Effect)</div>
+        <div class="f"><span class="t">M = F × d</span></div>
+        <div class="vars">
+          <b>M</b> = moment / torque (N·m)<br>
+          <b>F</b> = force applied (N)<br>
+          <b>d</b> = perpendicular distance from pivot (m)
+        </div>
+        <span class="unit">N·m</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 1.4 Pressure -->
+  <div class="topic">
+    <div class="topic-title">1.4 · Pressure</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Pressure</div>
+        <div class="f">
+          <span class="lhs">P =</span>
+          <span class="fr"><span class="n">F</span><span class="b"></span><span class="d">A</span></span>
+        </div>
+        <div class="vars">
+          <b>P</b> = pressure (Pa)<br>
+          <b>F</b> = force pushing on surface (N)<br>
+          <b>A</b> = contact area (m²)
+        </div>
+        <span class="unit">Pa (N/m²)</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Pressure in a Fluid (due to depth)</div>
+        <div class="f"><span class="t">P = ρgh</span></div>
+        <div class="vars">
+          <b>ρ</b> = density of the fluid (kg/m³)<br>
+          <b>g</b> = 10 N/kg<br>
+          <b>h</b> = depth below the surface (m)
+        </div>
+        <span class="unit">Pa</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Boyle's Law — constant temperature</div>
+        <div class="f"><span class="t">P₁V₁ = P₂V₂</span></div>
+        <div class="vars">
+          Pressure × volume = constant<br>
+          <b>P</b> = pressure · <b>V</b> = volume<br>
+          Only valid when temperature does not change
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 1.5 Work, Energy, Power -->
+  <div class="topic">
+    <div class="topic-title">1.5 · Work, Energy &amp; Power</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Work Done</div>
+        <div class="f"><span class="t">W = F × s</span></div>
+        <div class="vars">
+          <b>W</b> = work done (J)<br>
+          <b>F</b> = force in the direction of motion (N)<br>
+          <b>s</b> = displacement (m)
+        </div>
+        <span class="unit">J</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Kinetic Energy</div>
+        <div class="f"><span class="t">KE = ½mv²</span></div>
+        <div class="vars">
+          Energy an object has due to its motion<br>
+          <b>m</b> = mass (kg) · <b>v</b> = speed (m/s)
+        </div>
+        <span class="unit">J</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Change in Kinetic Energy</div>
+        <div class="f"><span class="t">ΔKE = ½m(v² − u²)</span></div>
+        <div class="vars">
+          <b>v</b> = final speed · <b>u</b> = initial speed<br>
+          Equals the work done by the resultant force
+        </div>
+        <span class="unit">J</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Gravitational Potential Energy</div>
+        <div class="f"><span class="t">GPE = mgh</span></div>
+        <div class="vars">
+          Energy stored due to height above ground<br>
+          <b>m</b> = mass (kg) · <b>g</b> = 10 N/kg · <b>h</b> = height (m)
+        </div>
+        <span class="unit">J</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Power</div>
+        <div class="f">
+          <span class="lhs">P =</span>
+          <span class="fr"><span class="n">W</span><span class="b"></span><span class="d">t</span></span>
+          <span class="op">&nbsp;or&nbsp;</span>
+          <span class="fr"><span class="n">E</span><span class="b"></span><span class="d">t</span></span>
+        </div>
+        <div class="vars">
+          <b>P</b> = power (W) · <b>W</b> or <b>E</b> = energy (J) · <b>t</b> = time (s)<br>
+          Power = rate of energy transfer
+        </div>
+        <span class="unit">W</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Power (for a moving object)</div>
+        <div class="f"><span class="t">P = Fv</span></div>
+        <div class="vars">
+          Useful shortcut when speed is given<br>
+          <b>F</b> = driving force (N) · <b>v</b> = speed (m/s)
+        </div>
+        <span class="unit">W</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Efficiency</div>
+        <div class="f">
+          <span class="lhs">η =</span>
+          <span class="fr">
+            <span class="n">Useful&nbsp;Energy&nbsp;Output</span>
+            <span class="b"></span>
+            <span class="d">Total&nbsp;Energy&nbsp;Input</span>
+          </span>
+          <span class="t">&nbsp;× 100%</span>
+        </div>
+        <div class="vars">
+          Unitless — always expressed as a percentage<br>
+          100% = perfectly efficient (no energy wasted)
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Wasted Energy</div>
+        <div class="f"><span class="t">E<sub>wasted</sub> = E<sub>input</sub> − E<sub>useful</sub></span></div>
+        <div class="vars">
+          Total energy is always conserved overall<br>
+          Wasted energy is usually released as heat or sound
+        </div>
+        <span class="unit">J</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 2 — Thermal Physics
+     ══════════════════════════════════════════ -->
+<section class="section" id="s2">
+  <div class="sec-header">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">Thermal Physics</h2>
+  </div>
+
+  <div class="note">
+    <strong>⚠ Always convert °C to Kelvin before using any gas law equation.</strong><br>
+    T (K) = T (°C) + 273 &nbsp;·&nbsp; Absolute zero = 0 K = −273 °C
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">2.1 · Temperature &amp; Gas Laws</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Kelvin Conversion</div>
+        <div class="f"><span class="t">T(K) = T(°C) + 273</span></div>
+        <div class="vars">
+          Always use Kelvin (K) in gas law calculations<br>
+          You cannot use Celsius directly in these equations
+        </div>
+        <span class="unit">K</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Boyle's Law — temperature constant</div>
+        <div class="f"><span class="t">P₁V₁ = P₂V₂</span></div>
+        <div class="vars">
+          Pressure and volume are inversely proportional<br>
+          <b>P</b> = pressure (Pa) · <b>V</b> = volume (m³)
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Pressure Law — volume constant</div>
+        <div class="f">
+          <span class="fr"><span class="n">P₁</span><span class="b"></span><span class="d">T₁</span></span>
+          <span class="op">=</span>
+          <span class="fr"><span class="n">P₂</span><span class="b"></span><span class="d">T₂</span></span>
+        </div>
+        <div class="vars">
+          Pressure is proportional to temperature<br>
+          <b>T</b> must be in Kelvin · volume stays constant
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Charles's Law — pressure constant</div>
+        <div class="f">
+          <span class="fr"><span class="n">V₁</span><span class="b"></span><span class="d">T₁</span></span>
+          <span class="op">=</span>
+          <span class="fr"><span class="n">V₂</span><span class="b"></span><span class="d">T₂</span></span>
+        </div>
+        <div class="vars">
+          Volume is proportional to temperature<br>
+          <b>T</b> must be in Kelvin · pressure stays constant
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">2.2 · Thermal Energy</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Specific Heat Capacity</div>
+        <div class="f"><span class="t">Q = mcΔT</span></div>
+        <div class="vars">
+          Heat needed to change temperature (no change of state)<br>
+          <b>Q</b> = heat energy (J)<br>
+          <b>m</b> = mass (kg)<br>
+          <b>c</b> = specific heat capacity (J/kg·°C)<br>
+          <b>ΔT</b> = temperature change (°C or K)
+        </div>
+        <span class="unit">J</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Specific Latent Heat</div>
+        <div class="f"><span class="t">Q = mL</span></div>
+        <div class="vars">
+          Heat needed to change state (temperature stays constant)<br>
+          <b>Q</b> = heat energy (J)<br>
+          <b>m</b> = mass (kg)<br>
+          <b>L</b> = specific latent heat (J/kg)<br>
+          Use L<sub>f</sub> for melting/freezing · L<sub>v</sub> for boiling/condensing
+        </div>
+        <span class="unit">J</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 3 — Waves
+     ══════════════════════════════════════════ -->
+<section class="section" id="s3">
+  <div class="sec-header">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Waves</h2>
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">3.1 · General Wave Properties</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Wave Speed</div>
+        <div class="f"><span class="t">v = fλ</span></div>
+        <div class="vars">
+          <b>v</b> = wave speed (m/s)<br>
+          <b>f</b> = frequency (Hz)<br>
+          <b>λ</b> (lambda) = wavelength (m)
+        </div>
+        <span class="unit">m/s</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Frequency and Period</div>
+        <div class="f">
+          <span class="lhs">f =</span>
+          <span class="fr"><span class="n">1</span><span class="b"></span><span class="d">T</span></span>
+        </div>
+        <div class="vars">
+          <b>f</b> = frequency (Hz) — number of waves per second<br>
+          <b>T</b> = period (s) — time for one complete wave
+        </div>
+        <span class="unit">Hz</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">3.2 · Reflection, Refraction &amp; Lenses</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Refractive Index</div>
+        <div class="f">
+          <span class="lhs">n =</span>
+          <span class="fr"><span class="n">sin i</span><span class="b"></span><span class="d">sin r</span></span>
+        </div>
+        <div class="vars">
+          <b>n</b> = refractive index (no unit — just a number)<br>
+          <b>i</b> = angle of incidence (measured from normal)<br>
+          <b>r</b> = angle of refraction (measured from normal)
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Snell's Law — at a boundary</div>
+        <div class="f"><span class="t">n₁ sin θ₁ = n₂ sin θ₂</span></div>
+        <div class="vars">
+          Used when light crosses between two different materials<br>
+          <b>n₁, n₂</b> = refractive indices of each medium
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Critical Angle</div>
+        <div class="f">
+          <span class="lhs">sin c =</span>
+          <span class="fr"><span class="n">1</span><span class="b"></span><span class="d">n</span></span>
+        </div>
+        <div class="vars">
+          <b>c</b> = critical angle (degrees)<br>
+          <b>n</b> = refractive index of the denser medium<br>
+          Total internal reflection happens when angle &gt; c
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Magnification</div>
+        <div class="f">
+          <span class="lhs">m =</span>
+          <span class="fr"><span class="n">image&nbsp;height</span><span class="b"></span><span class="d">object&nbsp;height</span></span>
+          <span class="op">=</span>
+          <span class="fr"><span class="n">v</span><span class="b"></span><span class="d">u</span></span>
+        </div>
+        <div class="vars">
+          <b>v</b> = image distance from lens (m)<br>
+          <b>u</b> = object distance from lens (m)<br>
+          m &gt; 1 → magnified · m &lt; 1 → diminished
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">3.3 · Sound &amp; Echoes</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Speed of Sound — use wave speed formula</div>
+        <div class="f"><span class="t">v = fλ</span></div>
+        <div class="vars">
+          Speed of sound in air ≈ 340 m/s<br>
+          Speed of light / all EM waves = 3 × 10⁸ m/s
+        </div>
+        <span class="unit">m/s</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Echo — distance to object</div>
+        <div class="f">
+          <span class="lhs">d =</span>
+          <span class="fr"><span class="n">v × t</span><span class="b"></span><span class="d">2</span></span>
+        </div>
+        <div class="vars">
+          <b>d</b> = distance to reflecting object (m)<br>
+          <b>v</b> = speed of sound (m/s)<br>
+          <b>t</b> = total time measured for echo (s)<br>
+          Divide by 2 because the sound travels <em>there and back</em>
+        </div>
+        <span class="unit">m</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 4 — Electricity & Magnetism
+     ══════════════════════════════════════════ -->
+<section class="section" id="s4">
+  <div class="sec-header">
+    <span class="sec-num">04</span>
+    <h2 class="sec-title">Electricity &amp; Magnetism</h2>
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">4.1 · Basic Quantities</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Electric Charge</div>
+        <div class="f"><span class="t">Q = It</span></div>
+        <div class="vars">
+          <b>Q</b> = charge (C)<br>
+          <b>I</b> = current (A)<br>
+          <b>t</b> = time (s)
+        </div>
+        <span class="unit">C</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Ohm's Law</div>
+        <div class="f"><span class="t">V = IR</span></div>
+        <div class="vars">
+          <b>V</b> = voltage / potential difference (V)<br>
+          <b>I</b> = current (A)<br>
+          <b>R</b> = resistance (Ω)
+        </div>
+        <span class="unit">V</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Resistance</div>
+        <div class="f">
+          <span class="lhs">R =</span>
+          <span class="fr"><span class="n">V</span><span class="b"></span><span class="d">I</span></span>
+        </div>
+        <div class="vars">
+          Rearrangement of Ohm's Law<br>
+          Higher resistance → less current for the same voltage
+        </div>
+        <span class="unit">Ω</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">4.2 · Series &amp; Parallel Circuits</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Series — Total Resistance</div>
+        <div class="f"><span class="t">R<sub>T</sub> = R₁ + R₂ + R₃</span></div>
+        <div class="vars">
+          Resistances simply add up<br>
+          Same current flows through every component
+        </div>
+        <span class="unit">Ω</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Parallel — Total Resistance</div>
+        <div class="f">
+          <span class="fr"><span class="n">1</span><span class="b"></span><span class="d">R<sub>T</sub></span></span>
+          <span class="op">=</span>
+          <span class="fr"><span class="n">1</span><span class="b"></span><span class="d">R₁</span></span>
+          <span class="op">+</span>
+          <span class="fr"><span class="n">1</span><span class="b"></span><span class="d">R₂</span></span>
+          <span class="op">+</span>
+          <span class="fr"><span class="n">1</span><span class="b"></span><span class="d">R₃</span></span>
+        </div>
+        <div class="vars">
+          R<sub>T</sub> is always less than the smallest individual R<br>
+          Each branch shares the same voltage
+        </div>
+        <span class="unit">Ω</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Series — Voltage Rule</div>
+        <div class="f"><span class="t">V<sub>total</sub> = V₁ + V₂ + V₃</span></div>
+        <div class="vars">
+          Voltage splits across each component<br>
+          All the individual voltages add up to the supply voltage
+        </div>
+        <span class="unit">V</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Parallel — Current Rule</div>
+        <div class="f"><span class="t">I<sub>total</sub> = I₁ + I₂ + I₃</span></div>
+        <div class="vars">
+          Current splits between branches<br>
+          Branch currents add up to total current
+        </div>
+        <span class="unit">A</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Voltage Divider Rule (series only)</div>
+        <div class="f">
+          <span class="fr"><span class="n">V₁</span><span class="b"></span><span class="d">V₂</span></span>
+          <span class="op">=</span>
+          <span class="fr"><span class="n">R₁</span><span class="b"></span><span class="d">R₂</span></span>
+        </div>
+        <div class="vars">
+          Only applies to resistors in series<br>
+          Larger resistance → larger share of the voltage
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">4.3 · Power &amp; Energy in Circuits</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Electrical Power ① — general</div>
+        <div class="f"><span class="t">P = IV</span></div>
+        <div class="vars">
+          <b>P</b> = power (W) · <b>I</b> = current (A) · <b>V</b> = voltage (V)<br>
+          Use this form when both I and V are known
+        </div>
+        <span class="unit">W</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Electrical Power ② — voltage unknown</div>
+        <div class="f"><span class="t">P = I²R</span></div>
+        <div class="vars">
+          Use when voltage is not given<br>
+          Derived from P = IV and V = IR
+        </div>
+        <span class="unit">W</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Electrical Power ③ — current unknown</div>
+        <div class="f">
+          <span class="lhs">P =</span>
+          <span class="fr"><span class="n">V²</span><span class="b"></span><span class="d">R</span></span>
+        </div>
+        <div class="vars">
+          Use when current is not given<br>
+          Derived from P = IV and I = V ÷ R
+        </div>
+        <span class="unit">W</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Electrical Energy Transferred</div>
+        <div class="f"><span class="t">E = Pt = IVt</span></div>
+        <div class="vars">
+          <b>E</b> = energy transferred (J)<br>
+          <b>P</b> = power (W) · <b>t</b> = time (s)
+        </div>
+        <span class="unit">J</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">4.4 · Transformer</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Voltage Ratio</div>
+        <div class="f">
+          <span class="fr"><span class="n">V<sub>p</sub></span><span class="b"></span><span class="d">V<sub>s</sub></span></span>
+          <span class="op">=</span>
+          <span class="fr"><span class="n">N<sub>p</sub></span><span class="b"></span><span class="d">N<sub>s</sub></span></span>
+        </div>
+        <div class="vars">
+          <b>V<sub>p</sub></b> = primary (input) voltage<br>
+          <b>V<sub>s</sub></b> = secondary (output) voltage<br>
+          <b>N<sub>p</sub></b> = turns on primary coil<br>
+          <b>N<sub>s</sub></b> = turns on secondary coil
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Ideal Transformer — power in = power out</div>
+        <div class="f"><span class="t">V<sub>p</sub> × I<sub>p</sub> = V<sub>s</sub> × I<sub>s</sub></span></div>
+        <div class="vars">
+          Assumes 100% efficiency (no energy loss)<br>
+          Step-up voltage → step-down current, and vice versa
+        </div>
+        <span class="unit">W</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Transformer Efficiency</div>
+        <div class="f">
+          <span class="lhs">η =</span>
+          <span class="fr">
+            <span class="n">V<sub>s</sub> × I<sub>s</sub></span>
+            <span class="b"></span>
+            <span class="d">V<sub>p</sub> × I<sub>p</sub></span>
+          </span>
+          <span class="t">&nbsp;× 100%</span>
+        </div>
+        <div class="vars">
+          Unitless — expressed as a percentage<br>
+          Real transformers are slightly less than 100%
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 5 — Nuclear Physics
+     ══════════════════════════════════════════ -->
+<section class="section" id="s5">
+  <div class="sec-header">
+    <span class="sec-num">05</span>
+    <h2 class="sec-title">Nuclear Physics</h2>
+  </div>
+
+  <div class="note">
+    <strong>⚠ Conservation rule for all nuclear equations:</strong><br>
+    The total mass number (A) must be equal on both sides of the arrow.<br>
+    The total atomic number (Z) must also be equal on both sides.
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">5.1 · Nuclear Notation</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Nuclide Symbol</div>
+        <div class="f" style="font-size:1.2rem; gap:.2rem">
+          <sup style="font-family:var(--code); font-size:.85rem; line-height:1">A</sup><sub style="font-family:var(--code); font-size:.85rem; line-height:1; margin-left:-0.3rem">Z</sub><span class="t">&nbsp;X</span>
+        </div>
+        <div class="vars">
+          <b>A</b> = mass number = protons + neutrons<br>
+          <b>Z</b> = atomic number = number of protons<br>
+          <b>X</b> = chemical symbol of the element
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Number of Neutrons</div>
+        <div class="f"><span class="t">N = A − Z</span></div>
+        <div class="vars">
+          <b>N</b> = number of neutrons<br>
+          Neutrons = mass number minus atomic number
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">5.2 · Radioactive Decay</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Alpha Decay (α)</div>
+        <div class="f" style="font-size:.9rem; flex-wrap:wrap; gap:.25rem">
+          <span class="t">
+            <sup>A</sup><sub>Z</sub>X &nbsp;→&nbsp;
+            <sup>A−4</sup><sub>Z−2</sub>Y &nbsp;+&nbsp;
+            <sup>4</sup><sub>2</sub>He
+          </span>
+        </div>
+        <div class="vars">
+          <b>A</b> decreases by 4 · <b>Z</b> decreases by 2<br>
+          Emits a helium-4 nucleus (the alpha particle)<br>
+          Least penetrating — stopped by a sheet of paper
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Beta-Minus Decay (β⁻)</div>
+        <div class="f" style="font-size:.9rem; flex-wrap:wrap; gap:.25rem">
+          <span class="t">
+            <sup>A</sup><sub>Z</sub>X &nbsp;→&nbsp;
+            <sup>A</sup><sub>Z+1</sub>Y &nbsp;+&nbsp;
+            <sup>0</sup><sub>−1</sub>e
+          </span>
+        </div>
+        <div class="vars">
+          <b>A</b> unchanged · <b>Z</b> increases by 1<br>
+          A neutron turns into a proton + an electron<br>
+          Stopped by a few mm of aluminium
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Gamma Emission (γ)</div>
+        <div class="f" style="font-size:.9rem">
+          <span class="t"><sup>A</sup><sub>Z</sub>X* &nbsp;→&nbsp; <sup>A</sup><sub>Z</sub>X &nbsp;+&nbsp; γ</span>
+        </div>
+        <div class="vars">
+          <b>A</b> and <b>Z</b> both stay the same — only energy is released<br>
+          High-energy electromagnetic radiation<br>
+          Usually follows alpha or beta decay<br>
+          Needs thick lead or concrete to stop
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">5.3 · Half-Life</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Remaining Activity After n Half-Lives</div>
+        <div class="f">
+          <span class="lhs">N =</span>
+          <span class="t">N₀ ×</span>
+          <span class="fr"><span class="n">1</span><span class="b"></span><span class="d">2</span></span>
+          <sup style="font-family:var(--code); font-size:.75rem">n</sup>
+        </div>
+        <div class="vars">
+          <b>N</b> = remaining number of nuclei (or activity)<br>
+          <b>N₀</b> = original number of nuclei (or activity)<br>
+          <b>n</b> = number of half-lives that have passed<br>
+          Each half-life → activity halves exactly
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Number of Half-Lives Elapsed</div>
+        <div class="f">
+          <span class="lhs">n =</span>
+          <span class="fr">
+            <span class="n">total&nbsp;time&nbsp;elapsed</span>
+            <span class="b"></span>
+            <span class="d">t<sub>½</sub></span>
+          </span>
+        </div>
+        <div class="vars">
+          <b>t<sub>½</sub></b> = the half-life (in s, minutes, years, etc.)<br>
+          <b>n</b> = how many half-lives have passed<br>
+          Plug n into the formula above to find remaining activity
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════
+     SECTION 6 — Space Physics
+     ══════════════════════════════════════════ -->
+<section class="section" id="s6">
+  <div class="sec-header">
+    <span class="sec-num">06</span>
+    <h2 class="sec-title">Space Physics</h2>
+  </div>
+
+  <div class="note">
+    <strong>Note:</strong> Space physics in 5054 is largely conceptual. Understand <strong>stellar life cycles, the Big Bang, and red-shift</strong> in words — the equations below are the quantitative parts examiners can ask you to calculate.
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">6.1 · Key Equations</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Speed of All EM Waves in a Vacuum</div>
+        <div class="f"><span class="t">c = 3 × 10⁸ m/s</span></div>
+        <div class="vars">
+          This is the same for all electromagnetic radiation in space<br>
+          It is also the fastest possible speed in the universe
+        </div>
+        <span class="unit">m/s</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Red-Shift</div>
+        <div class="f">
+          <span class="lhs">z =</span>
+          <span class="fr"><span class="n">Δλ</span><span class="b"></span><span class="d">λ₀</span></span>
+        </div>
+        <div class="vars">
+          <b>z</b> = red-shift value (no unit)<br>
+          <b>Δλ</b> = how much the wavelength has shifted<br>
+          <b>λ₀</b> = the original wavelength when at rest<br>
+          Larger z → the galaxy is moving away faster
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Hubble's Law</div>
+        <div class="f"><span class="t">v = H₀ × d</span></div>
+        <div class="vars">
+          <b>v</b> = speed at which a galaxy is moving away<br>
+          <b>H₀</b> = Hubble constant<br>
+          <b>d</b> = distance to the galaxy<br>
+          Evidence that the universe is expanding
+        </div>
+        <span class="unit">km/s</span>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Orbital Speed</div>
+        <div class="f">
+          <span class="lhs">v =</span>
+          <span class="fr"><span class="n">2πr</span><span class="b"></span><span class="d">T</span></span>
+        </div>
+        <div class="vars">
+          <b>r</b> = orbital radius (m)<br>
+          <b>T</b> = orbital period — time for one full orbit (s)<br>
+          2πr = circumference of the circular orbit
+        </div>
+        <span class="unit">m/s</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="topic">
+    <div class="topic-title">6.2 · Gravity (revisited from Topic 1)</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-label">Weight in a Gravitational Field</div>
+        <div class="f"><span class="t">W = mg</span></div>
+        <div class="vars">
+          <b>g</b> on Earth ≈ 10 N/kg · on the Moon ≈ 1.6 N/kg<br>
+          g gets weaker the further you are from a planet<br>
+          Mass stays the same everywhere — weight changes
+        </div>
+        <span class="unit">N</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<script>
+  const btns = document.querySelectorAll('.nav-btn');
+  const secs = document.querySelectorAll('.section');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      secs.forEach(s => s.classList.remove('visible'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.sec).classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
